@@ -17,8 +17,8 @@ export class ProductComponent implements OnInit {
 		touchDrag: false,
 		pullDrag: true,
 		dots: false,
-		autoplay: false,
-		autoplayTimeout: 5000,
+		autoplay: true,
+		autoplayTimeout: 3000,
 		navSpeed: 700,
 		navText: ["<div class='nav-button owl-prev'>‹</div>", "<div class='nav-button owl-next'>›</div>"],
 		responsive: {

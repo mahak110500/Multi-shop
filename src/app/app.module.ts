@@ -31,6 +31,8 @@ import { CheckoutComponent } from './pages/shopping-pages/checkout/checkout.comp
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -59,11 +61,13 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
     ShoppingCartComponent,
     CheckoutComponent,
     ContactUsComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     CarouselModule,
     BsDropdownModule.forRoot(),
     MatButtonToggleModule,

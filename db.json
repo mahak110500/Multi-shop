@@ -1,0 +1,14 @@
+{
+  "special-offer": [
+    {
+      "img": "./../../../assets/img/offer-1.jpg",
+      "discount": "Save 20%",
+      "id": 1
+    },
+    {
+      "img": "./../../../assets/img/offer-1.jpg",
+      "discount": "Save 20%",
+      "id": 2
+    }
+  ]
+}

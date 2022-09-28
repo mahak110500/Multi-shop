@@ -1,0 +1,7 @@
+.offersDiv{
+    display: flex;
+}
+
+.offersDiv img{
+    width: 150%;
+}
