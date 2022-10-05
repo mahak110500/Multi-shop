@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +32,11 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { PaymentComponent } from './pages/shopping-pages/payment/payment.component';
+import { SuccessComponent } from './pages/shopping-pages/success/success.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+
 
 
 @NgModule({
@@ -61,6 +66,8 @@ import { HttpClientModule } from '@angular/common/http';
     ShoppingCartComponent,
     CheckoutComponent,
     ContactUsComponent,
+    PaymentComponent,
+    SuccessComponent,
     
   ],
   imports: [
@@ -71,9 +78,14 @@ import { HttpClientModule } from '@angular/common/http';
     CarouselModule,
     BsDropdownModule.forRoot(),
     MatButtonToggleModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPayPalModule
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }

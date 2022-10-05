@@ -33,6 +33,7 @@
     "minireset.css": "~0.0.4",
     "ngx-bootstrap": "^9.0.0",
     "ngx-owl-carousel-o": "^14.0.1",
+    "ngx-paypal": "^10.1.0",
     "rxjs": "~7.4.0",
     "save": "^2.9.0",
     "tslib": "^2.3.0",

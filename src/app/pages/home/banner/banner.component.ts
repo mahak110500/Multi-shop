@@ -16,7 +16,7 @@ export class BannerComponent implements OnInit {
 		touchDrag: false,
 		pullDrag: true,
 		dots: true,
-		autoplay: false,
+		autoplay: true,
 		autoplayTimeout: 5000,
 		navSpeed: 700,
 		navText: ['', ''],

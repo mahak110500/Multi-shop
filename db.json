@@ -10,5 +10,122 @@
       "discount": "Save 20%",
       "id": 2
     }
+  ],
+  "banner": [
+    {
+      "img": "./../../../assets/img/carousel-1.jpg",
+      "heading": "Men Fashion",
+      "paragraph": "Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam",
+      "id": 1
+    },
+    {
+      "img": "./../../../assets/img/carousel-2.jpg",
+      "heading": "Women Fashion",
+      "paragraph": "Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam",
+      "id": 2
+    },
+    {
+      "img": "./../../../assets/img/carousel-3.jpg",
+      "heading": "Kids Fashion",
+      "paragraph": "Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam",
+      "id": 3
+    }
+  ],
+  "shop-products": [
+    {
+      "img": "./../../../../assets/img/product-1.jpg",
+      "name": "Product Name Goes Here",
+      "price": "100.00",
+      "reviews": "98",
+      "id": 1
+    },
+    {
+      "img": "./../../../../assets/img/product-2.jpg",
+      "name": "Product Name Goes Here",
+      "price": "200.00",
+      "reviews": "90",
+      "id": 2
+    },
+    {
+      "img": "./../../../../assets/img/product-3.jpg",
+      "name": "Product Name Goes Here",
+      "price": "100.00",
+      "reviews": "93",
+      "id": 3
+    },
+    {
+      "img": "./../../../../assets/img/product-4.jpg",
+      "name": "Product Name Goes Here",
+      "price": "100.00",
+      "reviews": "90",
+      "id": 4
+    },
+    {
+      "img": "./../../../../assets/img/product-5.jpg",
+      "name": "Product Name Goes Here",
+      "price": "200.00",
+      "reviews": "93",
+      "id": 5
+    },
+    {
+      "img": "./../../../../assets/img/product-6.jpg",
+      "name": "Product Name Goes Here",
+      "price": "200.00",
+      "reviews": "92",
+      "id": 6
+    },
+    {
+      "img": "./../../../../assets/img/product-7.jpg",
+      "name": "Product Name Goes Here",
+      "price": "100.00",
+      "reviews": "95",
+      "id": 7
+    },
+    {
+      "img": "./../../../../assets/img/product-8.jpg",
+      "name": "Product Name Goes Here",
+      "price": "200.00",
+      "reviews": "90",
+      "id": 8
+    },
+    {
+      "img": "./../../../../assets/img/product-9.jpg",
+      "name": "Product Name Goes Here",
+      "price": "100.00",
+      "reviews": "99",
+      "id": 9
+    }
+  ],
+  "shop-detail": [
+    {
+      "productId": "1",
+      "qnt": "1",
+      "img": "./../../../../assets/img/product-1.jpg",
+      "name": "Product Name Goes Here",
+      "reviews": "99 Reviews",
+      "amt": "150.00",
+      "description": "Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy",
+      "id": 1
+    },
+    {
+      "productId": "2",
+      "qnt": "1",
+      "img": "./../../../../assets/img/product-2.jpg",
+      "name": "Product Name Goes Here",
+      "reviews": "90 Reviews",
+      "amt": "100.00",
+      "description": "Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy",
+      "id": 2
+    },
+    {
+      "productId": "3",
+      "qnt": "1",
+      "img": "./../../../../assets/img/product-2.jpg",
+      "name": "Product Name Goes Here",
+      "reviews": "92 Reviews",
+      "amt": "000.00",
+      "description": "Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy",
+      "id": 3
+    }
   ]
 }

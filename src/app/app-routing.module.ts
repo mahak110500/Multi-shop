@@ -5,8 +5,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { ShopDetailsComponent } from './pages/shop-details/shop-details.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CheckoutComponent } from './pages/shopping-pages/checkout/checkout.component';
+import { PaymentComponent } from './pages/shopping-pages/payment/payment.component';
 import { ShoppingCartComponent } from './pages/shopping-pages/shopping-cart/shopping-cart.component';
 import { ShoppingPagesComponent } from './pages/shopping-pages/shopping-pages.component';
+import { SuccessComponent } from './pages/shopping-pages/success/success.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,6 +40,14 @@ const routes: Routes = [
   {
     path: 'contact-us',
     component: ContactUsComponent
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent
+  },
+  {
+    path: 'success',
+    component: SuccessComponent
   }
 ];
 

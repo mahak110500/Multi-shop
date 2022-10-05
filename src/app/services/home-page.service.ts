@@ -10,7 +10,6 @@ export class HomePageService {
   constructor(private http:HttpClient) { }
 
   viewSpecialOffers(){
-    console.log("api called!");
     return this.http.get('http://localhost:3000/special-offer');
 
   }
