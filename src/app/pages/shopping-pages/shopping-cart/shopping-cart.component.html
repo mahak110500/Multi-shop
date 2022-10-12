@@ -37,7 +37,7 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" type="button" (click)="dec(item)" >
+                                        <button class="btn btn-sm btn-primary btn-minus" type="button" (click)="dec(item.id, item.quantity)" >
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
@@ -45,7 +45,7 @@
                                         class="form-control form-control-sm bg-secondary border-0 text-center"
                                         value="{{item.quantity}}">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus" type="button" (click)="inc(item)" >
+                                        <button class="btn btn-sm btn-primary btn-plus" type="button" (click)="inc(item.id, item.quantity)" >
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -93,7 +93,7 @@
                             <h5>Total</h5>
                             <h5>${{Total}}</h5>
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3"(click)="checkOut()">Proceed To Checkout</button>
+                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3"(click)="checkOut(product)">Proceed To Checkout</button>
                     </div>
                 </div>
             </div>

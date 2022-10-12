@@ -36,7 +36,8 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { PaymentComponent } from './pages/shopping-pages/payment/payment.component';
 import { SuccessComponent } from './pages/shopping-pages/success/success.component';
 import { NgxPayPalModule } from 'ngx-paypal';
-
+import { OrderHistoryComponent } from './common/header/header-first/order-history/order-history.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     ContactUsComponent,
     PaymentComponent,
     SuccessComponent,
+    OrderHistoryComponent,
     
   ],
   imports: [
@@ -80,7 +82,9 @@ import { NgxPayPalModule } from 'ngx-paypal';
     MatButtonToggleModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    NgbModule
+
 
   ],
   providers: [],

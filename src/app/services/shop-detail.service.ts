@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, map, Subject } from "rxjs";
 
 
 @Injectable({
@@ -8,16 +8,28 @@ import { BehaviorSubject } from "rxjs";
 })
 
 export class ShopDetailService {
+
+
     product: any;
+    products:any;
     public cartItemList: any = [];
     public productList = new BehaviorSubject<any>([]);
 
+    public wishList:any = [];
+    public wishlistItem = new BehaviorSubject<any>([]);
+
+    cartSubject = new Subject<any>();
 
     constructor(private http: HttpClient) { }
 
     //Get Product Data
     getProductData() {
         return this.productList.asObservable();
+    }
+
+    //Get Wishlist Data
+    getWishData(){
+        return this.wishlistItem.asObservable();
     }
 
     //Set Product Data
@@ -27,55 +39,44 @@ export class ShopDetailService {
         this.productList.next(product);
     }
 
-     //setting add to cart products to local storage
-    //  saveCart(){
-    //     localStorage.setItem('productData', JSON.stringify(this.cartItemList));
-    // }
+    //Set wishlist Data
+    setWishData(products:any){
+        console.log(products);
+        this.wishList.push(...products);
+        this.wishlistItem.next(products);
 
-    //getting add to cart products from localstorage
-    // loadCart(){
-    //     this.cartItemList = JSON.parse(localStorage.getItem('productData') as any) || [];
-    // }
+    }
 
     //Add to Cart
-    // Cartdata = []
+    Cartdata = []
 
     addToCart(product: any) {
 
         this.cartItemList.push(product);
         this.productList.next(this.cartItemList);
-        // this.saveCart();
 
         // this.Cartdata.push(product);
-        // console.log(this.Cartdata);
-        
+
+        this.Cartdata = JSON.parse(localStorage.getItem('productData'));
+        console.log(this.Cartdata);
 
         localStorage.removeItem('productData');
         localStorage.setItem('productData', JSON.stringify(this.cartItemList));
 
-        this.getTotalPrice();
     }
 
-   
 
-    addToWishlist(product: any) {
-        console.log(product);
+    addToWishlist(products: any) {
+        console.log(products);
 
-        this.cartItemList.push(product);
-        this.productList.next(this.cartItemList);
+        this.wishList.push(products);
+        this.wishlistItem.next(this.wishList);
+
+        console.log(this.wishList);
+        console.log(this.wishlistItem);
 
     }
 
-    getTotalPrice(): number {
-        let grandTotal = 0;
-        this.cartItemList.map((a: any) => {
-            console.log(a);
-            grandTotal = a.total;
-        })
-        console.log(grandTotal);
-
-        return grandTotal;
-    }
 
     removeCartItem(product: any, data) {
         data.map((a: any, index: any) => {
@@ -86,17 +87,35 @@ export class ShopDetailService {
         localStorage.removeItem('productData');
         localStorage.setItem('productData', JSON.stringify(data));
 
+        console.log(data);
 
-        // this.cartItemList.map((a: any, index: any) => {
-        //     if (product.id == a.id) {
-        //         this.cartItemList.splice(index, 1);
-        //     }
-        // })
-        // this.productList.next(this.cartItemList);
+        return data;
+
     }
 
+    onCheckout(data: any) {
 
+        const headers = new HttpHeaders({ 'myHeader': 'procademy' });
 
+        return this.http.post('http://localhost:3000/shoppingCart', data, { headers: headers }).subscribe((res) => {
+            console.log(res);
+
+        })
+    }
+
+    // totalItemsCount(products: any) {
+    //     console.log(products);
+
+    //     this.productCount = 0;
+
+    //     const totalCount = products.filter((product: any) => {
+    //         this.productCount = +this.productCount + +product.quantity
+    //     })
+    //     console.log(this.productCount);
+
+    //     this.emitQty.next(this.productCount);
+
+    // }
 
 
 

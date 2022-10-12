@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OrderHistory } from 'src/app/models/orderHistory.model';
+import { OrderHistoryService } from 'src/app/services/order-history.service';
 import { ShopDetailService } from 'src/app/services/shop-detail.service';
 
 
@@ -16,9 +18,18 @@ export class CheckoutComponent implements OnInit {
 	public grandTotal !: number;
 	selectedMethod: string;
 
+	paymentSelected = false;
+
+	history: OrderHistory[];
+	orders: any = new OrderHistory();
+
 	methodAvailable: string[] = ['Paypal', 'Direct', 'Bank'];
 
-	constructor(private shopDetail: ShopDetailService, private router: Router) { }
+	constructor(
+		private shopDetail: ShopDetailService,
+		private router: Router,
+		private prevHistory: OrderHistoryService
+	) { }
 
 	ngOnInit(): void {
 		this.show = false;
@@ -32,20 +43,21 @@ export class CheckoutComponent implements OnInit {
 				this.product = data
 			}
 
-			this.grandTotal = this.shopDetail.getTotalPrice()
-		})
+		});
+
+		// this.refreshOrders();
 
 		this.checkoutform = new FormGroup({
 			checkoutInfo: new FormGroup({
 				firstName: new FormControl(null, Validators.required),
 				lastName: new FormControl(null, Validators.required),
-				email: new FormControl(null, Validators.required),
-				mobileNo: new FormControl(null, [Validators.required, Validators.email]),
+				mobileNo: new FormControl(null, Validators.required),
+				email: new FormControl(null, [Validators.required, Validators.email]),
 				address1: new FormControl(null, Validators.required),
 				address2: new FormControl(null, Validators.required),
 				country: new FormControl(null, Validators.required),
 				city: new FormControl(null, Validators.required),
-				state: new FormControl(null, [Validators.required, Validators.email]),
+				state: new FormControl(null, Validators.required),
 				zipCode: new FormControl(null, Validators.required,),
 
 			})
@@ -54,7 +66,7 @@ export class CheckoutComponent implements OnInit {
 
 
 	showDiv() {
-		console.log(this.show);
+		// console.log(this.show);
 		this.show = !this.show;
 	}
 
@@ -75,20 +87,44 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	OncheckOut() {
-		localStorage.setItem('cart_total', JSON.stringify(this.Total));
-		this.router.navigate(['/payment'])
+		if (this.paymentSelected) {
+			// this.addOrders();
+
+			localStorage.setItem('cart_total', JSON.stringify(this.Total));
+			this.router.navigate(['/payment'])
+		}
+	}
+
+	// refreshOrders() {
+	// 	this.prevHistory.getOrders().subscribe((result) => {
+	// 		console.log(result);
+	// 		this.history = result;
+	// 	})
+	// }
 
 
-		// console.log(this.selectedMethod)  //Will give you the role selected;
-		// if (this.selectedMethod == "Paypal") {
-		// 	this.router.navigate(['/payment'])
-		// }
-		// else if (this.selectedMethod == "Direct") {
-		// 	this.router.navigate(['/checkout'])
-		// }
-		// else if (this.selectedMethod == "Bank") {
-		// 	this.router.navigate(['/checkout'])
-		// }
+
+	// addOrders() {
+		
+	// 	console.log(this.orders);
+		
+		
+	// 	this.prevHistory.addOrders(this.orders).subscribe((res) => {
+	// 		console.log(res);
+	// 		this.refreshOrders();
+	// 	})
+	// }
+
+	onChange(a: any) {
+		if (a == '7') {
+
+			this.paymentSelected = !this.paymentSelected;
+		}
+		else {
+			this.paymentSelected = false;
+		}
+
+
 	}
 
 }

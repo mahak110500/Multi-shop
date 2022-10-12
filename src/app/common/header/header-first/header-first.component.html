@@ -11,14 +11,42 @@
         </div>
         <div class="col-lg-6 text-center text-lg-right">
             <div class="d-inline-flex align-items-center">
-                <div class="btn-group">
+
+                
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        <div class="btn-group" dropdown>
+
+                            <button type="button" class="btn btn-sm btn-light " id="button-basic" dropdownToggle style="padding:8px;">My
+                                Account</button>
+
+                            <ul id="dropdown-basic" *dropdownMenu
+                                class="dropdown-menu bg-primary rounded-0 border-0 m-0" role="menu"
+                                aria-labelledby="button-basic">
+                                <li role="menuitem">
+                                    <a  class="dropdown-item">Sign in</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a r class="dropdown-item">Sign up</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a r class="dropdown-item" routerLink="/order-history">My Orders</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </a>
+                </div>
+
+
+                <!-- <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
                         Account</button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <button class="dropdown-item" type="button">Sign in</button>
                         <button class="dropdown-item" type="button">Sign up</button>
+                        <button class="dropdown-item" type="button">My Orders</button>
                     </div>
-                </div>
+                </div> -->
                 <div class="btn-group mx-2">
                     <button type="button" class="btn btn-sm btn-light dropdown-toggle"
                         data-toggle="dropdown">USD</button>

@@ -1,5 +1,5 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { environment } from 'src/environments/environment';
@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+  data:any;
   cartTotal!: any;
   public payPalConfig?: IPayPalConfig;
   showSuccess! : any;
@@ -17,15 +18,28 @@ export class PaymentComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.cartTotal = JSON.parse(localStorage.getItem('cart_total') as any) || [];
-    console.log(this.cartTotal);
 
-    this.initConfig();
+    //for storing shopping-cart data
+    this.data = JSON.parse(localStorage.getItem('productData')as any) || [];
+    console.log(this.data);
     
+
+    //for storing shoppin-cart amount
+    this.cartTotal = JSON.parse(localStorage.getItem('cart_total') as any) || [];
+    // console.log(this.cartTotal);
+
+    
+    this.initConfig();
+
   }
 
 
   private initConfig(): void {
+    console.log(this.cartTotal);
+    console.log(this.data);
+    
+    
+    // paypal_sdk.Buttons().render('#paypal-button-container');
     this.payPalConfig = {
     currency: 'EUR',
     clientId: `${environment.client_ID}`,
@@ -70,6 +84,7 @@ export class PaymentComponent implements OnInit {
         console.log('onApprove - you can get full order details inside onApprove: ', details);
       });
     },
+
     onClientAuthorization: (data) => {
       console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
       if(data.status === 'COMPLETED'){
@@ -87,6 +102,7 @@ export class PaymentComponent implements OnInit {
       console.log('onClick', data, actions);
     },
   };
+  
   }
 
 }

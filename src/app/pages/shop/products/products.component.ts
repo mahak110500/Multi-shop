@@ -10,6 +10,8 @@ import { ShopService } from 'src/app/services/shop.service';
 export class ProductsComponent implements OnInit {
 	public productList: any = [];
 
+	
+
 	constructor(private shop: ShopService, private shopDetail: ShopDetailService) { }
 
 	ngOnInit(): void {
@@ -33,12 +35,25 @@ export class ProductsComponent implements OnInit {
 
 	addToCart(product: any) {
 		this.shopDetail.addToCart(product);
+
+		//Function for total cart count
+		this.cartNumberFunc();
 	}
 
-	addToWishlist(product:any){
-		console.log(product);
-		this.shopDetail.addToWishlist(product);
+	addToWishlist(products:any){
+		console.log(products );
+		this.shopDetail.addToWishlist(products);
 	}
+
+	cartNumber:number = 0;
+	cartNumberFunc(){
+		var cartValue = JSON.parse(localStorage.getItem('productData')) ;
+		this.cartNumber = cartValue.length;
+		this.shopDetail.cartSubject.next(this.cartNumber);
+		
+	}
+
+	
 
 
 }
