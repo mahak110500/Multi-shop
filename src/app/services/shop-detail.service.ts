@@ -9,16 +9,17 @@ import { BehaviorSubject, map, Subject } from "rxjs";
 
 export class ShopDetailService {
 
+    product: any; //Add to Cart
+    products: any; //Add to Wishlist
 
-    product: any;
-    products:any;
     public cartItemList: any = [];
     public productList = new BehaviorSubject<any>([]);
 
-    public wishList:any = [];
+    public wishList: any = [];
     public wishlistItem = new BehaviorSubject<any>([]);
 
-    cartSubject = new Subject<any>();
+    cartSubject = new Subject<any>(); //For add to cart count
+    wishSubject = new Subject<any>(); //For add to wishlist count
 
     constructor(private http: HttpClient) { }
 
@@ -28,7 +29,7 @@ export class ShopDetailService {
     }
 
     //Get Wishlist Data
-    getWishData(){
+    getWishData() {
         return this.wishlistItem.asObservable();
     }
 
@@ -40,7 +41,7 @@ export class ShopDetailService {
     }
 
     //Set wishlist Data
-    setWishData(products:any){
+    setWishData(products: any) {
         console.log(products);
         this.wishList.push(...products);
         this.wishlistItem.next(products);
@@ -58,22 +59,24 @@ export class ShopDetailService {
         // this.Cartdata.push(product);
 
         this.Cartdata = JSON.parse(localStorage.getItem('productData'));
-        console.log(this.Cartdata);
 
         localStorage.removeItem('productData');
         localStorage.setItem('productData', JSON.stringify(this.cartItemList));
 
     }
 
+    //Add to wishlist
+    WishData = []
 
     addToWishlist(products: any) {
-        console.log(products);
-
-        this.wishList.push(products);
+        this.wishList.push(products); //array of products getting added to wishlist
         this.wishlistItem.next(this.wishList);
 
-        console.log(this.wishList);
-        console.log(this.wishlistItem);
+        this.WishData = JSON.parse(localStorage.getItem('wishData'));
+        console.log(this.WishData);
+
+        localStorage.removeItem('wishData');
+        localStorage.setItem('wishData',JSON.stringify(this.wishList));
 
     }
 
@@ -87,14 +90,24 @@ export class ShopDetailService {
         localStorage.removeItem('productData');
         localStorage.setItem('productData', JSON.stringify(data));
 
-        console.log(data);
-
         return data;
 
     }
 
-    onCheckout(data: any) {
+    removeWishItem(products:any, Data){
+        Data.map((b:any, index:any) => {
+            if(products.id == b.id){
+                Data.splice(index,1)
+            }
+        })
+        localStorage.removeItem('wishData');
+        localStorage.setItem('wishData', JSON.stringify(Data));
 
+        return Data;
+
+    }
+
+    onCheckout(data: any) {
         const headers = new HttpHeaders({ 'myHeader': 'procademy' });
 
         return this.http.post('http://localhost:3000/shoppingCart', data, { headers: headers }).subscribe((res) => {
@@ -102,21 +115,5 @@ export class ShopDetailService {
 
         })
     }
-
-    // totalItemsCount(products: any) {
-    //     console.log(products);
-
-    //     this.productCount = 0;
-
-    //     const totalCount = products.filter((product: any) => {
-    //         this.productCount = +this.productCount + +product.quantity
-    //     })
-    //     console.log(this.productCount);
-
-    //     this.emitQty.next(this.productCount);
-
-    // }
-
-
 
 }

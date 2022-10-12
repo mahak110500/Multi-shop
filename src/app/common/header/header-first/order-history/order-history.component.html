@@ -30,7 +30,7 @@
                     <tr *ngFor="let products of productsOrdered[0]; let i=index;">
                         
                             <td>{{i+1}}</td>
-                            <td class="align-middle"><img src="{{products.img}}" alt="" style="width: 50px;"></td>
+                            <td class="align-middle"><img src="./../../../../{{products.img}}" alt="" style="width: 50px;"></td>
                             <td class="align-middle">{{products.name}}</td>
                             <td class="align-middle">${{products.price}}</td>
                             <td class="align-middle">{{products.quantity}}</td>

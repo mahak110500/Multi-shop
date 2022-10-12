@@ -9,7 +9,6 @@ import { ShopService } from 'src/app/services/shop.service';
 })
 export class ProductsComponent implements OnInit {
 	public productList: any = [];
-
 	
 
 	constructor(private shop: ShopService, private shopDetail: ShopDetailService) { }
@@ -41,8 +40,16 @@ export class ProductsComponent implements OnInit {
 	}
 
 	addToWishlist(products:any){
-		console.log(products );
+		let Data = JSON.parse(localStorage.getItem('wishData'));
+		localStorage.removeItem('wishData')
+		console.log(products);
+
+		Data.push('products')
+		localStorage.setItem('wishData', JSON.stringify(Data));
 		this.shopDetail.addToWishlist(products);
+
+		//Function for total wishlist count
+		this.wishNumberFunc();
 	}
 
 	cartNumber:number = 0;
@@ -53,7 +60,14 @@ export class ProductsComponent implements OnInit {
 		
 	}
 
-	
+	wishNumber:number = 0;
+	wishNumberFunc(){
+		var wishValue = JSON.parse(localStorage.getItem('wishData'));
+		this.wishNumber = wishValue.length;
+		this.shopDetail.wishSubject.next(this.wishNumber);
+		console.log(this.wishNumber);
+		
+	}
 
 
 }

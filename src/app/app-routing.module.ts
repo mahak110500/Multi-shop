@@ -11,6 +11,7 @@ import { ShoppingCartComponent } from './pages/shopping-pages/shopping-cart/shop
 import { ShoppingPagesComponent } from './pages/shopping-pages/shopping-pages.component';
 import { SuccessComponent } from './pages/shopping-pages/success/success.component';
 import { WishlistComponent } from './pages/shopping-pages/wishlist/wishlist.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -62,7 +63,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [CommonModule,RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

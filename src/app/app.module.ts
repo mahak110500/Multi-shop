@@ -38,6 +38,9 @@ import { SuccessComponent } from './pages/shopping-pages/success/success.compone
 import { NgxPayPalModule } from 'ngx-paypal';
 import { OrderHistoryComponent } from './common/header/header-first/order-history/order-history.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { WishlistComponent } from './pages/shopping-pages/wishlist/wishlist.component';
+
 
 
 @NgModule({
@@ -70,9 +73,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PaymentComponent,
     SuccessComponent,
     OrderHistoryComponent,
+    WishlistComponent
     
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { anxiety } from '@igniteui/material-icons-extended';
 import { ShopDetailService } from 'src/app/services/shop-detail.service';
 
 @Component({
@@ -24,10 +23,6 @@ export class ShoppingCartComponent implements OnInit {
 			let data = localStorage.getItem('productData');
 			data = JSON.parse(data);  //object of products getting added to shopping cart and stored in localstorage
 
-
-			// let dataCart = this.shopDetail.saveCart();
-			// dataCart = JSON.parse(dataCart);
-
 			if (this.product == '') {
 				this.product = data;
 			}
@@ -40,7 +35,7 @@ export class ShoppingCartComponent implements OnInit {
 
 	}
 
-	//To Remove item
+	//To Remove Cart item
 	removeItem(item: any) {
 		let res = this.shopDetail.removeCartItem(item, this.product)
 		console.log(res);
@@ -52,9 +47,7 @@ export class ShoppingCartComponent implements OnInit {
 		}
 
 		this.cartNumberFunc();
-
 	}
-
 
 	cartNumber: number = 0;
 	cartNumberFunc() {

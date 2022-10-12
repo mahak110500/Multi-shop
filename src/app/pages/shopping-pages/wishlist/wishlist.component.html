@@ -9,22 +9,38 @@
                         <th>Product</th>
                         <th>Name</th>
                         <th>Price</th>
+                        <th>Reviews</th>
                         <th>Quantity</th>
-                        <th>Order Date</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody class="align-middle">
-                    <tr *ngFor="let prod of products; let i=index;">
+                    <tr *ngFor="let item of products; let i=index;">
                         
                             <td>{{i+1}}</td>
-                            <td class="align-middle"><img src="{{prod.img}}" alt="" style="width: 50px;"></td>
-                            <td class="align-middle">{{prod.name}}</td>
-                            <td class="align-middle">${{prod.price}}</td>
-                            <td class="align-middle">{{prod.quantity}}</td>
+                            <td class="align-middle"><img src="./../../../../{{item.img}}" alt="" style="width: 50px;"></td>
+                            <td class="align-middle">{{item.name}}</td>
+                            <td class="align-middle">${{item.price}}</td>
+                            <td class="align-middle">
+                                <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small>({{item.reviews}})</small>
+                                </div>
+                            </td>
+                            <td class="align-middle">{{item.quantity}}</td>
+                            <td class="align-middle"><button class="btn btn-sm btn-danger" (click)="removeWishItem(item)"><i
+                                class="fa fa-times"></i></button>
+                            </td>
                        
                     </tr>
+
                 </tbody>
             </table>
         </div>
+
     </div>
 </div>
