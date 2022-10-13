@@ -17,7 +17,6 @@ export class SpecialOfferComponent implements OnInit {
   }
 
   offerSection(){
-    
 		this.home.viewSpecialOffers().subscribe((result) => {
 			console.log(result);
 			this.offersData = result;

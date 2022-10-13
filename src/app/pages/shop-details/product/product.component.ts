@@ -10,19 +10,28 @@ import { ShopService } from 'src/app/services/shop.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-	public productList: any = [];
+	productArr:any = [];
 
 
   constructor(private shopDetail:ShopDetailService, private shop:ShopService) { }
 
   ngOnInit(): void {
 	
-	this.shop.viewShopProducts().subscribe((res) => {
-		this.productList = res;
+	// this.shop.viewShopProducts().subscribe((res) => {
+	// 	this.productList = res;
 
-		this.productList.forEach((a: any) => {
-			Object.assign(a, { quantity: 1, total: a.price });
-		});
+	// 	this.productList.forEach((a: any) => {
+	// 		Object.assign(a, { quantity: 1, total: a.price });
+	// 	});
+	// })
+
+	this.shopDetail.viewShopDetail().subscribe((res)=> {
+		this.productArr = res;
+
+		this.productArr.forEach((a:any)=> {
+			Object.assign(a, {quantity:1, total: a.price})
+			
+		  });
 	})
   }
 
@@ -53,73 +62,6 @@ export class ProductComponent implements OnInit {
 		nav: true
 	}
 
-  
-
-  productArr = [
-	{
-		productId: 1,
-		qnt: 1,
-		img: "./../../../../assets/img/product-1.jpg",
-		name: "Product Name Goes Here",
-		reviews: "99 Reviews",
-		amt: "150.00",
-		description: "Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy",
-	},
-	{
-		productId: 2,
-		qnt: 1,
-		img: "./../../../../assets/img/product-2.jpg",
-		name: "Product Name Goes Here",
-		reviews: "86 Reviews",
-		amt: "200.00",
-		description: "Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy",
-	},
-	{
-		productId: 3,
-		qnt: 1,
-		img: "./../../../../assets/img/product-3.jpg",
-		name: "Product Name Goes Here",
-		reviews: "98 Reviews",
-		amt: "100.00",
-		description: "Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy",
-	},
-	{
-		productId: 4,
-		qnt: 1,
-		img: "./../../../../assets/img/product-4.jpg",
-		name: "Product Name Goes Here",
-		reviews: "95 Reviews",
-		amt: "120.00",
-		description: "Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy",
-	},
-	{
-		productId: 5,
-		qnt: 1,
-		img: "./../../../../assets/img/product-2.jpg",
-		name: "Product Name Goes Here",
-		reviews: "86 Reviews",
-		amt: "200.00",
-		description: "Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy",
-	},
-	{
-		productId: 6,
-		qnt: 1,
-		img: "./../../../../assets/img/product-1.jpg",
-		name: "Product Name Goes Here",
-		reviews: "86 Reviews",
-		amt: "200.00",
-		description: "Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy",
-	},
-	{
-		productId: 6,
-		img: "./../../../../assets/img/product-4.jpg",
-		qnt: 1,
-		name: "Product Name Goes Here",
-		reviews: "86 Reviews",
-		amt: "200.00",
-		description: "Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy",
-	},
-  ]
 
   inc(prod){
 	console.log(prod);
@@ -139,9 +81,19 @@ export class ProductComponent implements OnInit {
 	}
   }
 
-  addToCart(item:any){
-	this.shopDetail.addToCart(item);
-  }
+  addToCart(product: any) {
+	this.shopDetail.addToCart(product);
 
+	//Function for total cart count
+	this.cartNumberFunc();
+}
+
+cartNumber:number = 0;
+cartNumberFunc(){
+	var cartValue = JSON.parse(localStorage.getItem('productData')) ;
+	this.cartNumber = cartValue.length;
+	this.shopDetail.cartSubject.next(this.cartNumber);
+	
+}
   
 }

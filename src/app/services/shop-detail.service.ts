@@ -23,6 +23,10 @@ export class ShopDetailService {
 
     constructor(private http: HttpClient) { }
 
+    viewShopDetail(){ 
+        return this.http.get('http://localhost:3000/shop-detail');
+    }
+
     //Get Product Data
     getProductData() {
         return this.productList.asObservable();

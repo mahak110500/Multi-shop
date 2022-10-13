@@ -1,8 +1,8 @@
 <!-- Offer Start -->
 <div class="offersDiv">
-    <div class="container-fluid pt-5 pb-3" *ngFor="let offers of offersData">
+    <div class="container-fluid pt-5 pb-3" >
         <div class="row px-xl-5">
-            <div class="col-md-6">
+            <div class="col-md-6" *ngFor="let offers of offersData">
                 <div class="product-offer mb-30" style="height: 300px;">
                     <img class="img-fluid" src={{offers.img}} alt="">
                     <div class="offer-text">
